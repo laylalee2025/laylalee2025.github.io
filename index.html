@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taeyoung Lee</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💙</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #111; --gray: #555; --light-gray: #999;
+      --border: #e5e5e5; --accent: #2563eb; --bg: #fff; --sidebar-w: 260px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.75; color: var(--black); background: var(--bg); }
+
+    /* SIDEBAR */
+    .sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; padding: 52px 36px; display: flex; flex-direction: column; border-right: 1px solid var(--border); background: var(--bg); z-index: 100; }
+    .sidebar-name { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 4px; color: var(--black); text-decoration: none; }
+    .sidebar-title { font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 300; color: var(--light-gray); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 48px; }
+    nav { display: flex; flex-direction: column; gap: 6px; }
+    nav a { font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--gray); padding: 4px 0; transition: color 0.15s; position: relative; }
+    nav a::before { content: ''; position: absolute; left: -12px; top: 50%; transform: translateY(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: 0; transition: opacity 0.15s; }
+    nav a:hover, nav a.active { color: var(--black); }
+    nav a:hover::before, nav a.active::before { opacity: 1; }
+    .sidebar-footer { margin-top: auto; display: flex; gap: 14px; flex-wrap: wrap; }
+    .sidebar-footer a { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--light-gray); text-decoration: none; letter-spacing: 0.04em; transition: color 0.15s; }
+    .sidebar-footer a:hover { color: var(--black); }
+
+    /* MAIN */
+    main { margin-left: var(--sidebar-w); padding: 52px 80px 100px 80px; max-width: 1100px; }
+    section { padding-top: 80px; padding-bottom: 80px; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+    .section-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 32px; }
+
+    /* ABOUT */
+    #about h1 { font-size: 2.6rem; font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 24px; }
+    #about h1 em { font-style: italic; color: var(--gray); }
+    .about-body { color: var(--gray); max-width: 680px; }
+    .about-body p { margin-bottom: 16px; }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-body a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--border); transition: text-decoration-color 0.15s; }
+    .about-body a:hover { text-decoration-color: var(--black); }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item { display: grid; grid-template-columns: 140px 1fr; gap: 0 32px; padding: 24px 0; border-top: 1px solid var(--border); }
+    .exp-item:first-child { border-top: none; }
+    .exp-date { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 300; color: var(--light-gray); letter-spacing: 0.04em; padding-top: 3px; }
+    .exp-role { font-weight: 500; font-size: 1rem; margin-bottom: 2px; }
+    .exp-where { font-style: italic; color: var(--gray); font-size: 0.95rem; margin-bottom: 6px; }
+    .exp-desc { color: var(--gray); font-size: 0.95rem; line-height: 1.6; }
+    .exp-desc a { color: var(--black); text-underline-offset: 3px; text-decoration-color: var(--border); transition: text-decoration-color 0.15s; }
+    .exp-desc a:hover { text-decoration-color: var(--black); }
+    .section-note { margin-top: 20px; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--light-gray); letter-spacing: 0.04em; }
+    .section-note a { color: var(--light-gray); border-bottom: 1px solid var(--border); text-decoration: none; padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+    .section-note a:hover { color: var(--black); border-color: var(--black); }
+
+    /* PUBLICATIONS */
+    .project-list { display: flex; flex-direction: column; }
+    .project-item { padding: 28px 0; border-top: 1px solid var(--border); }
+    .project-item:first-child { border-top: none; }
+    .project-header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+    .project-title { font-weight: 500; font-size: 1.05rem; }
+    .project-links { display: flex; gap: 12px; flex-shrink: 0; }
+    .project-links a { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--light-gray); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
+    .project-links a:hover { color: var(--black); border-color: var(--black); }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--light-gray); border: 1px solid var(--border); padding: 2px 8px; border-radius: 2px; }
+    .project-desc { color: var(--gray); font-size: 0.95rem; line-height: 1.65; max-width: 700px; }
+
+    /* FOOTER */
+    .site-footer { margin-left: var(--sidebar-w); padding: 48px 80px; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+    .footer-greeting { font-family: 'EB Garamond', Georgia, serif; font-size: 1rem; color: var(--gray); }
+    .footer-icons { display: flex; gap: 18px; align-items: center; }
+    .footer-icons a { color: #5a8fd4; transition: color 0.15s, transform 0.15s; display: flex; align-items: center; }
+    .footer-icons a:hover { color: #2563eb; transform: translateY(-2px); }
+    .footer-icons svg { width: 20px; height: 20px; fill: currentColor; }
+    .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--light-gray); letter-spacing: 0.04em; }
+
+    /* MOBILE */
+    .mobile-header { display: none; position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 16px 24px; align-items: center; justify-content: space-between; }
+    .mobile-name { font-size: 1rem; font-weight: 500; }
+    .mobile-nav-toggle { background: none; border: none; cursor: pointer; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); }
+    .mobile-nav { display: none; flex-direction: column; background: var(--bg); border-bottom: 1px solid var(--border); padding: 8px 24px 16px; gap: 2px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); text-decoration: none; padding: 8px 0; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .mobile-header { display: flex; }
+      main { margin-left: 0; padding: 40px 24px 80px; max-width: 100%; }
+      #about h1 { font-size: 1.9rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 4px; }
+      .project-header { flex-direction: column; gap: 8px; }
+      .site-footer { margin-left: 0; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE HEADER -->
+  <div class="mobile-header">
+    <span class="mobile-name">Taeyoung Lee</span>
+    <button class="mobile-nav-toggle" onclick="toggleNav()">Menu</button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#about" onclick="closeNav()">About</a>
+    <a href="#experience" onclick="closeNav()">Education</a>
+    <a href="#publications" onclick="closeNav()">Publications</a>
+    <a href="#work" onclick="closeNav()">Work</a>
+    <a href="#awards" onclick="closeNav()">Awards</a>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a class="sidebar-name" href="#about">Taeyoung Lee</a>
+    <p class="sidebar-title">Ph.D. Student ·<br>Korea University</p>
+    <nav>
+      <a href="#about" class="active">About</a>
+      <a href="#experience">Education</a>
+      <a href="#publications">Publications</a>
+      <a href="#work">Work</a>
+      <a href="#awards">Awards</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/cdn-cgi/l/email-protection#324653574b5d475c555e575772595d4057531c53511c5940">Email</a>
+      <a href="https://github.com/laylalee2025" target="_blank">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=4TlIwz8AAAAJ" target="_blank">Scholar</a>
+      <a href="cv.pdf" target="_blank">CV</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label">About</p>
+      <h1>Hello, I'm<br><em>Taeyoung Lee.</em></h1>
+      <div class="about-body">
+        <p>
+          I'm a Ph.D. student in the <a href="https://info.korea.ac.kr/info/index.do" target="_blank">Department of Computer Science and Engineering at Korea University</a>,
+          advised by <a href="https://ini.korea.ac.kr/" target="_blank">Prof. Hyeoncheol Kim</a>.
+          My research focuses on AI in Education (AIED), Human-AI Interaction,
+          and Knowledge Tracing.
+        </p>
+        <p>
+          I'm particularly interested in how AI systems can understand and adapt
+          to individual learners, and how humans and AI can interact meaningfully
+          in educational contexts.
+        </p>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="experience">
+      <p class="section-label">Education</p>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <span class="exp-date">2026 — Now</span>
+          <div>
+            <p class="exp-role">Ph.D. Student</p>
+            <p class="exp-where">Korea University</p>
+            <p class="exp-desc">Advisor: <a href="https://ini.korea.ac.kr/" target="_blank">Prof. Hyeoncheol Kim</a>.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-date">2020 — 2022</span>
+          <div>
+            <p class="exp-role">M.S. in AI Education</p>
+            <p class="exp-where">Gyeongin National University of Education</p>
+            <p class="exp-desc">Advisor: Prof. Jaeho Lee.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-date">2013 — 2016</span>
+          <div>
+            <p class="exp-role">B.S. in Elementary Education</p>
+            <p class="exp-where">Jinju National University of Education</p>
+            <p class="exp-desc">Advisor: Prof. Jaehyun Lee.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <p class="section-label">Publications</p>
+      <div class="project-list">
+
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title">Development and Application of an Educational Program Using Metaverse to Enhance AI Thinking Ability</span>
+            <div class="project-links">
+              <a href="https://scholar.google.com/citations?user=4TlIwz8AAAAJ" target="_blank">Scholar</a>
+            </div>
+          </div>
+          <p style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--light-gray); letter-spacing:0.03em; margin-bottom:10px;">
+            Jaeho Lee &amp; <strong style="color:var(--gray);font-weight:600;">Taeyoung Lee</strong> (2023) &nbsp;·&nbsp; <em>Journal of Creative Information Culture, 9</em>(1), 11–21.
+          </p>
+          <div class="project-tags">
+            <span class="tag">AI Education</span>
+            <span class="tag">Metaverse</span>
+            <span class="tag">Computational Thinking</span>
+          </div>
+          <p class="project-desc">
+            Designed and evaluated an educational program leveraging metaverse environments
+            to cultivate AI thinking ability in learners. Explores how immersive virtual spaces
+            can support structured AI literacy and problem-solving skill development.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <p class="section-label">Work Experience &amp; Affiliation</p>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <span class="exp-date">2018 — Now</span>
+          <div>
+            <p class="exp-role">Elementary School Teacher</p>
+            <p class="exp-where">Gyeonggi Provincial Office of Education</p>
+          </div>
+        </div>
+
+      </div>
+      <p class="section-note">
+        For more details, please download the <a href="cv.pdf" target="_blank">CV</a>.
+      </p>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards">
+      <p class="section-label">Awards &amp; Honors</p>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <span class="exp-date">Dec. 2025</span>
+          <div>
+            <p class="exp-role">Superintendent of Education Commendation</p>
+            <p class="exp-where">Gyeonggi Provincial Office of Education</p>
+            <p class="exp-desc">Outstanding contribution to strengthening teacher research activities and educational capacity.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-date">Dec. 2024</span>
+          <div>
+            <p class="exp-role">Minister of Education Commendation</p>
+            <p class="exp-where">Ministry of Education, Republic of Korea</p>
+            <p class="exp-desc">Outstanding contribution to digital-based education innovation.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-date">Dec. 2024</span>
+          <div>
+            <p class="exp-role">Superintendent of Education Commendation</p>
+            <p class="exp-where">Gyeonggi Provincial Office of Education</p>
+            <p class="exp-desc">Outstanding contribution to school autonomous project management for Gyeonggi future education.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-date">Aug. 2024</span>
+          <div>
+            <p class="exp-role">Digital Education Research Competition Award</p>
+            <p class="exp-where">Gyeonggi Provincial Office of Education</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-date">Dec. 2023</span>
+          <div>
+            <p class="exp-role">Top 10 Digital Creative Competency Projects</p>
+            <p class="exp-where">Gyeonggi Provincial Office of Education</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-date">Nov. 2023</span>
+          <div>
+            <p class="exp-role">Excellence Award, Teacher Research Group for Future Education</p>
+            <p class="exp-where">Korea Education and Research Information Service (KERIS)</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-date">Feb. 2023</span>
+          <div>
+            <p class="exp-role">Outstanding Thesis Award</p>
+            <p class="exp-where">Gyeongin National University of Education</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-greeting">Thanks for visiting 💙</p>
+    <div class="footer-icons">
+      <a href="/cdn-cgi/l/email-protection#3d495c58445248535a5158587d56524f585c135c5e13564f" title="Email">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </a>
+      <a href="https://github.com/laylalee2025" target="_blank" title="GitHub">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+      </a>
+      <a href="https://scholar.google.com/citations?user=4TlIwz8AAAAJ" target="_blank" title="Google Scholar">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/>
+        </svg>
+      </a>
+      <a href="cv.pdf" target="_blank" title="CV">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/>
+        </svg>
+      </a>
+    </div>
+    <p class="footer-copy">© 2026 Taeyoung Lee</p>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar nav a');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const active = document.querySelector(`.sidebar nav a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => observer.observe(s));
+
+    functio
