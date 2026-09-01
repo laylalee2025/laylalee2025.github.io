@@ -42,6 +42,9 @@
     .section-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 20px; }
 
     /* ABOUT */
+    .about-row { display: flex; align-items: flex-start; gap: 40px; }
+    .about-main { flex: 1 1 auto; min-width: 0; }
+    .about-photo { flex: 0 0 auto; width: 150px; height: 225px; border-radius: 3px; object-fit: cover; border: 1px solid var(--border); margin-top: 6px; }
     #about h1 { font-size: 1.85rem; font-weight: 500; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 16px; }
     #about h1 em { font-style: italic; color: var(--gray); }
     .about-body { color: var(--gray); max-width: 680px; }
@@ -102,6 +105,8 @@
       .topnav a.active { box-shadow: inset 3px 0 0 #fff; }
       main { padding: 8px 18px 12px; }
       #about h1 { font-size: 1.6rem; }
+      .about-row { flex-direction: column-reverse; align-items: flex-start; gap: 18px; }
+      .about-photo { width: 110px; height: 165px; margin-top: 0; }
       .site-footer { padding: 32px 18px; }
     }
   </style>
@@ -123,7 +128,6 @@
       <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#97;&#101;&#121;&#111;&#117;&#110;&#103;&#108;&#101;&#101;&#64;&#107;&#111;&#114;&#101;&#97;&#46;&#97;&#99;&#46;&#107;&#114;">Email</a>
       <a href="https://github.com/laylalee2025" target="_blank">GitHub</a>
       <a href="https://scholar.google.com/citations?user=4TlIwz8AAAAJ" target="_blank">Scholar</a>
-      <a href="cv.pdf" target="_blank">CV</a>
     </div>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="topnav">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -137,8 +141,10 @@
     <!-- ABOUT -->
     <section id="about">
       <p class="section-label">About</p>
-      <h1>Hello, I'm <em>Taeyoung Lee.</em></h1>
-      <div class="about-body">
+      <div class="about-row">
+       <div class="about-main">
+        <h1>Hello, I'm <em>Taeyoung Lee.</em></h1>
+        <div class="about-body">
         <p>
           I'm a Ph.D. student in the <a href="https://info.korea.ac.kr/info/index.do" target="_blank">Department of Computer Science and Engineering at Korea University</a>,
           advised by <a href="https://ini.korea.ac.kr/" target="_blank">Prof. Hyeoncheol Kim</a>.
@@ -150,6 +156,9 @@
           students know and how they learn, and how such models can inform the design of
           AI systems that support learners in classroom settings.
         </p>
+        </div>
+       </div>
+       <img class="about-photo" src="profile.jpg" width="150" height="225" alt="Taeyoung Lee">
       </div>
     </section>
 
@@ -244,7 +253,7 @@
 
       </div>
       <p class="section-note">
-        For more details, please download the <a href="cv.pdf" target="_blank">CV</a>.
+        For a full record of teaching, training and outreach activities, see the <a href="cv.html">Korean CV</a>.
       </p>
     </section>
 
@@ -304,11 +313,6 @@
       <a href="https://scholar.google.com/citations?user=4TlIwz8AAAAJ" target="_blank" title="Google Scholar">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/>
-        </svg>
-      </a>
-      <a href="cv.pdf" target="_blank" title="CV">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/>
         </svg>
       </a>
     </div>

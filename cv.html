@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이태영 · 교육 활동 이력</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💙</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #111; --gray: #555; --light-gray: #999;
+      --border: #e5e5e5; --accent: #2563eb; --bg: #fff;
+      --nav-bg: #1b2f6f; --nav-fg: rgba(255,255,255,0.82); --nav-h: 52px;
+      --content-w: 1120px; --content-pad: 32px;
+    }
+    html { scroll-behavior: smooth; font-family: "Helvetica Neue", Helvetica, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif; }
+    button, input, textarea, select { font: inherit; }
+    body { font-family: "Helvetica Neue", Helvetica, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif; font-size: 15px; line-height: 1.6; color: var(--black); background: var(--bg); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; word-break: keep-all; }
+
+    /* TOP NAV */
+    .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); background: var(--nav-bg); }
+    .topbar-inner { height: 100%; max-width: var(--content-w); margin: 0 auto; padding: 0 var(--content-pad); display: flex; align-items: stretch; overflow-x: auto; scrollbar-width: none; }
+    .topbar-inner::-webkit-scrollbar { display: none; }
+    .topbar-brand { display: flex; align-items: center; font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; color: #fff; text-decoration: none; padding-right: 24px; white-space: nowrap; }
+    .brand-heart { margin-left: 2px; font-size: 0.9em; line-height: 1; }
+    .topnav { display: flex; align-items: center; }
+    .topnav a { display: flex; align-items: center; font-size: 0.85rem; color: var(--nav-fg); text-decoration: none; padding: 0 14px; white-space: nowrap; box-shadow: inset 0 -2px 0 transparent; transition: color 0.15s, box-shadow 0.15s; }
+    .topnav a:hover { color: #fff; }
+    .topnav a.active { color: #fff; box-shadow: inset 0 -2px 0 #fff; }
+    .topbar-links { margin-left: auto; display: flex; padding-left: 20px; }
+    .topbar-links a { display: flex; align-items: center; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.62); text-decoration: none; padding: 0 8px; white-space: nowrap; transition: color 0.15s; }
+    .topbar-links a:hover, .topbar-links a.active { color: #fff; }
+    .nav-toggle { display: none; align-items: center; margin-left: auto; background: none; border: 0; padding: 0 2px; color: #fff; cursor: pointer; }
+    .nav-toggle svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; }
+
+    /* MAIN */
+    body { padding-top: var(--nav-h); }
+    main { max-width: var(--content-w); margin: 0 auto; padding: 8px var(--content-pad) 12px; }
+    section[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
+    section { padding-top: 44px; padding-bottom: 44px; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+    .section-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-gray); margin-bottom: 20px; }
+
+    /* HEADER */
+    #top h1 { font-size: 1.85rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 10px; }
+    #top h1 em { font-style: normal; color: var(--gray); font-size: 1.05rem; font-weight: 400; margin-left: 10px; letter-spacing: 0; }
+    .top-meta { color: var(--gray); font-size: 0.95rem; margin-bottom: 4px; }
+    .top-mail { margin-top: 10px; }
+    .top-mail a { color: var(--gray); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.15s, border-color 0.15s; }
+    .top-mail a:hover { color: var(--black); border-color: var(--black); }
+
+    /* ITEMS */
+    .cv-list { display: flex; flex-direction: column; }
+    .cv-item { position: relative; padding: 6px 0 6px 16px; }
+    .cv-item::before { content: '\2022'; position: absolute; left: 1px; top: 6px; font-size: 1.05rem; line-height: 1.42; color: var(--light-gray); }
+    .cv-title { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; margin-bottom: 2px; }
+    .cv-year { font-size: 0.82rem; font-weight: 400; color: var(--light-gray); white-space: nowrap; }
+    .cv-where { color: var(--gray); font-size: 0.88rem; }
+    .cv-role { color: var(--light-gray); }
+
+    /* FOOTER */
+    .site-footer { max-width: var(--content-w); margin: 0 auto; padding: 40px var(--content-pad); border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+    .footer-greeting { font-size: 0.9rem; color: var(--gray); }
+    .footer-copy { font-size: 0.62rem; color: var(--light-gray); letter-spacing: 0.04em; }
+
+    @media (max-width: 899px) {
+      .topbar-links { display: none; }
+    }
+    @media (max-width: 659px) {
+      .topbar-inner { padding: 0 18px; overflow: visible; }
+      .nav-toggle { display: flex; }
+      .topnav { display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--nav-bg); border-bottom: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
+      .topnav.open { display: flex; }
+      .topnav a { padding: 13px 18px; box-shadow: none; }
+      .topnav a.active { box-shadow: inset 3px 0 0 #fff; }
+      main { padding: 8px 18px 12px; }
+      #top h1 { font-size: 1.6rem; }
+      #top h1 em { display: block; margin-left: 0; margin-top: 4px; }
+      .site-footer { padding: 32px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAV -->
+  <header class="topbar">
+   <div class="topbar-inner">
+    <a class="topbar-brand" href="index.html">Taeyoung<span class="brand-heart">🤍</span></a>
+    <nav class="topnav" id="topnav">
+      <a href="index.html#about">About</a>
+      <a href="index.html#publications">Publications</a>
+      <a href="index.html#experience">Education</a>
+      <a href="index.html#work">Experience</a>
+      <a href="index.html#awards">Honors</a>
+    </nav>
+    <div class="topbar-links">
+      <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#97;&#101;&#121;&#111;&#117;&#110;&#103;&#108;&#101;&#101;&#64;&#107;&#111;&#114;&#101;&#97;&#46;&#97;&#99;&#46;&#107;&#114;">Email</a>
+      <a href="https://github.com/laylalee2025" target="_blank">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=4TlIwz8AAAAJ" target="_blank">Scholar</a>
+      <a href="cv.html" class="active">CV</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="topnav">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+   </div>
+  </header>
+
+  <main>
+
+    <!-- HEADER -->
+    <section id="top">
+      <p class="section-label">Curriculum Vitae</p>
+      <h1>이태영<em>Taeyoung Lee</em></h1>
+      <p class="top-meta">고려대학교 컴퓨터학과 박사과정 · 컴퓨터교육 전공</p>
+      <p class="top-meta">산들초등학교 교사 · 경기도교육청</p>
+      <p class="top-meta top-mail"><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#97;&#101;&#121;&#111;&#117;&#110;&#103;&#101;&#100;&#117;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">taeyoungedu@gmail.com</a></p>
+    </section>
+
+    <!-- 학력 -->
+    <section id="edu">
+      <p class="section-label">학력</p>
+      <div class="cv-list">
+        <div class="cv-item">
+          <p class="cv-title">고려대학교 일반대학원 박사과정 재학 <span class="cv-year">(2026.03. ~ 현재)</span></p>
+          <p class="cv-where">컴퓨터학과 · 컴퓨터교육 전공 · 지도교수 김현철</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">경인교육대학교 교육전문대학원 석사 <span class="cv-year">(2020 ~ 2022)</span></p>
+          <p class="cv-where">AI교육 전공 · 지도교수 이재호</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">진주교육대학교 학사 <span class="cv-year">(2013 ~ 2016)</span></p>
+          <p class="cv-where">초등교육 전공</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 경력 -->
+    <section id="career">
+      <p class="section-label">경력</p>
+      <div class="cv-list">
+        <div class="cv-item">
+          <p class="cv-title">산들초등학교 교사 <span class="cv-year">(2026.03. ~ 현재)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">자유초등학교 교사 · 미래융합부장 <span class="cv-year">(2021.03. ~ 2025.02.)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">금릉초등학교 교사 <span class="cv-year">(2018.03. ~ 2021.02.)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 연구·집필 -->
+    <section id="research">
+      <p class="section-label">연구 · 집필</p>
+      <div class="cv-list">
+        <div class="cv-item">
+          <p class="cv-title">교육데이터 활용 교육자료 개발 <span class="cv-year">(2026)</span></p>
+          <p class="cv-where">KERIS <span class="cv-role">· 공동 저자</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">학습자 맞춤형 DATA 모델 기반 수업 방안 연구 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">교육부 <span class="cv-role">· 연구 주무</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">교과 연계 AI 활용 수업 사례집 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">KERIS <span class="cv-role">· 공동 저자</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">AIEDAP 수도 AI 융합 사례집 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">서울대학교 <span class="cv-role">· 공동 저자</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">AIDT 활용 초등 수학과 맞춤형 수업 설계 모형 연구 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">서울대학교 <span class="cv-role">· 공동 저자</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">SW·AI 교육 프로그램을 통한 디지털 역량 신장 연구 <span class="cv-year">(2024)</span></p>
+          <p class="cv-where">네이버 <span class="cv-role">· 연구회장</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">프로그래밍 교육 플랫폼 활용 SDGs 교육의 효과성 검증 연구 <span class="cv-year">(2023)</span></p>
+          <p class="cv-where">KERIS <span class="cv-role">· 연구회장</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">에듀테크 R&amp;D 지원센터 활성화 방안 <span class="cv-year">(2023)</span></p>
+          <p class="cv-where">KERIS <span class="cv-role">· 공동 저자</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 강의·포럼·세미나 -->
+    <section id="talks">
+      <p class="section-label">강의 · 포럼 · 세미나</p>
+      <div class="cv-list">
+        <div class="cv-item">
+          <p class="cv-title">AI·디지털 기반 교육혁신 교원연수 대표 강사 <span class="cv-year">(2026)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">초등 신규임용예정자 직무연수 강사 <span class="cv-year">(2026)</span></p>
+          <p class="cv-where">경기도남부교육연수원</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">공교육 학습데이터 기반 맞춤형 수업 설계 포럼 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">서울대학교 학습과학연구소</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">민·관·학·산·연 전문가 AI·SW 기반 교육 고도화를 위한 데이터 수집 표준화 방안 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">고려대학교</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">디지털 기반 학생 맞춤교육 선도학교 지식샘터 하반기 특강 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">KERIS</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">학생 맞춤교육 연구·선도학교 지식샘터 특강 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">KERIS</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">초등 신규임용예정자 직무연수 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">예비교원을 위한 교실혁명 워크숍 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">서울대학교</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">학교로 찾아가는 고양 on 디지털 교원 연수 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">경기도교육청 고양교육지원청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">에듀테크 리더교사, Hybrid Touch 하이러닝 교원 맞춤형 연수 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">경기도교육청 파주교육지원청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">학교로 찾아가는 AIDT 활용 런앤런 교원 직무연수 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">경기도교육청 파주교육지원청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">게임 기반 SW·AI 교육 프로그램 개발 및 적용 <span class="cv-year">(2024)</span></p>
+          <p class="cv-where">스마트교육학회</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">AIDT 실행 연수 강사 <span class="cv-year">(2024)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">AIDT 활용 교원 직무연수 강사 <span class="cv-year">(2024)</span></p>
+          <p class="cv-where">강원도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">교실혁명 선도교원 양성연수 주강사 <span class="cv-year">(2024)</span></p>
+          <p class="cv-where">교육부 · 서울대학교 · 한국미디어교육</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">디지털 시민교육 컨퍼런스 강사 <span class="cv-year">(2023)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">학생 SW캠프 강사 <span class="cv-year">(2023)</span></p>
+          <p class="cv-where">인천광역시교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">디지털 새싹 강사 <span class="cv-year">(2023 ~ 2025)</span></p>
+          <p class="cv-where">한국과학창의재단 · 교육부 <span class="cv-role">· 경인교육대학교, 광운대학교, 컴퓨팅교사협회</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">에듀테크 활용 교육, 디지털 시민교육 강사 <span class="cv-year">(2023)</span></p>
+          <p class="cv-where">경기도 파주교육지원청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">미래교육 디지털 역량강화 직무연수 강사 <span class="cv-year">(2022)</span></p>
+          <p class="cv-where">경기도혁신교육연수원</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 수상 -->
+    <section id="awards">
+      <p class="section-label">수상</p>
+      <div class="cv-list">
+        <div class="cv-item">
+          <p class="cv-title">교육감 표창 <span class="cv-year">(2025.12.)</span></p>
+          <p class="cv-where">경기도교육청 <span class="cv-role">· 교원 연구활동 및 교육역량 강화 유공</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">디지털 기반 교육혁신 유공 장관 표창 <span class="cv-year">(2024.12.)</span></p>
+          <p class="cv-where">교육부</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">교육감 표창 <span class="cv-year">(2024.12.)</span></p>
+          <p class="cv-where">경기도교육청 <span class="cv-role">· 경기 미래교육 학교자율과제 운영 유공</span></p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">디지털 교육 연구대회 입상 <span class="cv-year">(2024.08.)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">디지털 창의역량 우수 프로젝트 10선 <span class="cv-year">(2023.12.)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">미래교육 교원연구회 우수상 <span class="cv-year">(2023.11.)</span></p>
+          <p class="cv-where">한국교육학술정보원(KERIS)</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">우수 논문상 <span class="cv-year">(2023.02.)</span></p>
+          <p class="cv-where">경인교육대학교</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 기타 활동 -->
+    <section id="etc">
+      <p class="section-label">기타 활동</p>
+      <div class="cv-list">
+        <div class="cv-item">
+          <p class="cv-title">AIEDAP 일반교원 연수 모델 프로그램 개발 및 적용 교원 전문적학습공동체 <span class="cv-year">(2025)</span></p>
+          <p class="cv-where">서울대학교</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">교실혁명 선도교사 · T.O.U.C.H 교사(2기) · AIEDAP 마스터교원 · 사회정서 선도교사 <span class="cv-year">(2024)</span></p>
+          <p class="cv-where">교육부</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">디지털 기반 교육혁신 선도학교 · 하이러닝 선도학교 담당자 <span class="cv-year">(2024)</span></p>
+          <p class="cv-where">교육부 · 경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">디지털 교원 연구모임 리더교사 <span class="cv-year">(2024)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">찾아가는 학교 컨설팅(연수) 코디네이터 및 주강사 <span class="cv-year">(2024 ~ 2025)</span></p>
+          <p class="cv-where">교육부 · 한국과학창의재단</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">학생 프로그래밍 콘텐츠 ‘헬로메이플’ 기획 · 개발 <span class="cv-year">(2023)</span></p>
+          <p class="cv-where">넥슨코리아 · 넥슨재단</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">디지털 창의역량 실천학교 업무 담당자 · 우수교 선정 <span class="cv-year">(2023)</span></p>
+          <p class="cv-where">경기도교육청</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">학생 정보교육 콘텐츠 ‘We Canverse’ 기획 · 개발 <span class="cv-year">(2022)</span></p>
+          <p class="cv-where">EBS</p>
+        </div>
+        <div class="cv-item">
+          <p class="cv-title">파주교육지원청 부설 영재교육원 지도교사(정보) <span class="cv-year">(2022 ~ 2026)</span></p>
+          <p class="cv-where">경기도교육청 파주교육지원청</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-greeting">방문해 주셔서 감사합니다 💙</p>
+    <p class="footer-copy">© 2026 Taeyoung Lee</p>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const topnav = document.getElementById('topnav');
+
+    function setNav(open) {
+      topnav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle.addEventListener('click', () => setNav(!topnav.classList.contains('open')));
+    topnav.addEventListener('click', (e) => { if (e.target.tagName === 'A') setNav(false); });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') setNav(false); });
+    addEventListener('resize', () => { if (innerWidth > 659) setNav(false); });
+  </script>
+
+</body>
+</html>
